@@ -1,23 +1,27 @@
-{ config, pkgs, ... }:
-
+{ inputs, config, pkgs, nix-homebrew, home-manager, ... }:
+let
+  user = "mrbash";
+  hostname = "dq-matterhorn";
+in
 {
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   imports = [
-    ../_base/nix-homebrew.nix
+    (import ../_base/configuration.nix { inherit inputs pkgs user hostname; })
+    (import ../_base/nix-homebrew.nix { inherit inputs nix-homebrew user; })
     ../_base/homebrew.nix
-    home-manager.darwinModules.home-manager
+    {
+      home-manager = {
+        extraSpecialArgs = { inherit inputs; };
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        backupFileExtension = "backup";
+        users."${user}" = {
+          imports = [
+            ../_base/home.nix
+          ];
+        };
+      };
+    }
   ];
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    backupFileExtension = "backup";
-    users."mrbash".imports = [
-      ../_base/home.nix
-      # ../../users/mrbash/interactive.nix
-      # ../../users/mrbash/dq-matterhorn.nix
-    ];
-  };
 }

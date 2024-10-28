@@ -1,11 +1,4 @@
-{ pkgs
-, inputs
-, ...
-}: {
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  #environment.systemPackages = with pkgs; [ vim ];
-
+{ pkgs, inputs, user, hostname, ... }: {
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
@@ -28,8 +21,13 @@
 
   security.pam.enableSudoTouchIdAuth = true;
 
-  networking.hostName = "dq-matterhorn";
-  networking.localHostName = "dq-matterhorn";
+  networking.hostName = hostname;
+  networking.localHostName = hostname;
+
+  users.users."${user}" = {
+    home = "/Users/${user}";
+    shell = pkgs.fish;
+  };
 
   system.defaults.NSGlobalDomain = {
     InitialKeyRepeat = 15; # 25;
@@ -72,12 +70,6 @@
   };
 
   fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "Hack" ]; }) ];
-
-  users.users."mrbash".home = "/Users/mrbash";
-  users.users."mrbash" = {
-    # shell = pkgs.zsh;
-    shell = pkgs.fish;
-  };
 
   environment.variables = {
     EDITOR = "vim";

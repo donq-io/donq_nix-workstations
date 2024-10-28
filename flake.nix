@@ -48,7 +48,11 @@
           name = host;
           value = nix-darwin.lib.darwinSystem {
             specialArgs = { inherit inputs; };
-            modules = [ ./hosts/${host}/main.nix ];
+            modules = [
+              ./hosts/${host}/main.nix
+              home-manager.darwinModules.home-manager
+              nix-homebrew.darwinModules.nix-homebrew
+            ];
           };
         })
         hostDirs;
