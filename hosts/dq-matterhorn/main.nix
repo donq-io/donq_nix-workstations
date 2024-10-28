@@ -1,6 +1,6 @@
 { inputs, config, pkgs, nix-homebrew, home-manager, ... }:
 let
-  user = "mrbash";
+  user = "federico";
   hostname = "dq-matterhorn";
 in
 {
