@@ -12,9 +12,25 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {self}: {
+  outputs = {self, ...}: {
     modules = {
       darwin = ./modules/darwin.nix;
+    };
+
+    templates.default = {
+      path = ./template;
+      description = "DonQ's workstation configuration template";
+      welcomeText = ''
+        # Welcome to DonQ's workstation configuration template
+
+        ## Getting started
+
+        ...
+
+        ## Usage
+
+        ...
+      '';
     };
   };
 }
