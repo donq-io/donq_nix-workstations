@@ -18,7 +18,7 @@ in
         backupFileExtension = "backup";
         users."${user}" = {
           imports = [
-            ../_base/home.nix { inherit user; }
+            (import ../_base/home.nix { inherit pkgs user; })
           ];
         };
       };
