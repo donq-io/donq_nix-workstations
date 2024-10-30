@@ -25,5 +25,15 @@
         home.packages = [pkgs.lolcat];
       };
     };
+
+    templates.default = {
+      path = ./template;
+      description = "DonQ's workstation configuration template";
+      welcomeText = ''
+        # Gettin started
+        - TODO
+        - TODO
+      '';
+    };
   };
 }

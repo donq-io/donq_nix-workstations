@@ -2,8 +2,7 @@
   description = "DonQ's workstation configuration template";
 
   inputs = {
-    # donq.url = "github:donq-io/donq_nix-workstations";
-    donq.url = "path:/Users/Brasolin/dq/donq_nix-workstations";
+    donq.url = "github:donq-io/donq_nix-workstations?ref=alt";
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
