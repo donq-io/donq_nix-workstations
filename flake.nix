@@ -11,7 +11,11 @@
     # home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {nixpkgs, ...}: let
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  }: let
     system = "aarch64-darwin";
     pkgs = import nixpkgs {inherit system;};
   in {
@@ -29,11 +33,20 @@
     templates.default = {
       path = ./template;
       description = "DonQ's workstation configuration template";
-      welcomeText = ''
-        # Gettin started
-        - TODO
-        - TODO
+    };
+
+    packages.${system}.templater = pkgs.writeShellApplication {
+      name = "templater";
+      runtimeInputs = [pkgs.gnused];
+      text = ''
+        sed -e "s/HOST_NAME/$1/g" -e "s/USER_NAME/$2/g" ${self}/template/flake.nix > "$3"
       '';
+    };
+
+    # USAGE: nix run .#templater -- hostname username path/to/output/flake.nix
+    apps.interpolate = {
+      type = "app";
+      program = "${self.packages.${system}.templater}/bin/templater";
     };
   };
 }
