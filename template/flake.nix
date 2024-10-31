@@ -24,6 +24,7 @@
     } @ inputs:
     let
       inherit (self) outputs;
+      stateVersion = "24.05";
     in
     {
       darwinConfigurations = {
@@ -36,6 +37,7 @@
             home-manager.darwinModules.home-manager
             {
               home-manager = {
+                home.stateVersion = stateVersion;
                 extraSpecialArgs = { inherit inputs outputs; };
                 useGlobalPkgs = true;
                 useUserPackages = true;
