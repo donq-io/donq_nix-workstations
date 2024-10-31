@@ -25,11 +25,11 @@
     inherit (self) outputs;
   in {
     darwinConfigurations = {
-      "HOST_NAME" = nix-darwin.lib.darwinSystem {
+      "HOSTNAME" = nix-darwin.lib.darwinSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          {nixpkgs.hostPlatform = "aarch64-darwin";}
-          donq.darwinModules.default
+          {nixpkgs.hostPlatform = "PLATFORM";}
+          donq.darwinModules."PLATFORM".default
           # ./custom-darwin-module.nix
           home-manager.darwinModules.home-manager
           {
@@ -37,8 +37,8 @@
               extraSpecialArgs = {inherit inputs outputs;};
               useGlobalPkgs = true;
               useUserPackages = true;
-              users."USER_NAME".imports = [
-                donq.homeManagerModules.default
+              users."USERNAME".imports = [
+                donq.homeManagerModules."PLATFORM".default
                 # ./custom-homemanager-module.nix
               ];
             };
