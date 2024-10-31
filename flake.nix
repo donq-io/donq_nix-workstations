@@ -37,7 +37,9 @@
           name = "templater";
           runtimeInputs = [pkgs.gnused];
           text = ''
-            sed -e "s/HOSTNAME/$1/g" -e "s/USERNAME/$2/g" -e "s/PLATFORM/$3/g ${self}/template/flake.nix > "$4"
+            flake_directory=$(dirname "$4")
+            mkdir -p "$flake_directory"
+            sed -e "s/HOSTNAME/$1/g" -e "s/USERNAME/$2/g" -e "s/PLATFORM/$3/g" ${self}/template/flake.nix > "$4"
           '';
         };
 
