@@ -1,7 +1,4 @@
-{ pkgs, user, ... }: {
-  home.stateVersion = "24.05";
-  home.username = user;
-
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     iterm2
     age
