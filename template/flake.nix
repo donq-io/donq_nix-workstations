@@ -41,7 +41,12 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users."USERNAME".imports = [
-                  { home.stateVersion = stateVersion; }
+                  {
+                    home = {
+                      stateVersion = stateVersion;
+                      homeDirectory = "/Users/USERNAME";
+                    };
+                  }
                   donq.homeManagerModules."PLATFORM".default
                   # ./custom-homemanager-module.nix
                 ];
