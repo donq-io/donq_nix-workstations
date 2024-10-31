@@ -24,6 +24,8 @@
       in {
         darwinModules = {
           default = {...}: {
+            services.nix-daemon.enable = true;
+            
             environment.systemPackages = [pkgs.cowsay];
 
             environment.shellAliases = {
