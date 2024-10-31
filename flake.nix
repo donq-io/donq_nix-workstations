@@ -9,44 +9,49 @@
 
     # home-manager.url = "github:nix-community/home-manager/release-24.05";
     # home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = {
+  outputs = inputs @ {
     self,
+    flake-utils,
     nixpkgs,
     ...
-  }: let
-    system = "aarch64-darwin";
-    pkgs = import nixpkgs {inherit system;};
-  in {
-    darwinModules = {
-      default = {...}: {
-        environment.systemPackages = [pkgs.cowsay];
+  }:
+    flake-utils.lib.eachSystem ["aarch64-darwin" "x86_64-darwin"] (
+      system: let
+        pkgs = import nixpkgs {inherit system;};
+      in {
+        darwinModules = {
+          default = {...}: {
+            environment.systemPackages = [pkgs.cowsay];
+          };
+        };
+        homeManagerModules = {
+          default = {...}: {
+            home.packages = [pkgs.lolcat];
+          };
+        };
+
+        packages.templater = pkgs.writeShellApplication {
+          name = "templater";
+          runtimeInputs = [pkgs.gnused];
+          text = ''
+            sed -e "s/HOSTNAME/$1/g" -e "s/USERNAME/$2/g" -e "s/PLATFORM/$3/g ${self}/template/flake.nix > "$4"
+          '';
+        };
+
+        # USAGE: nix run .#templater -- hostname username platform path/to/output/flake.nix
+        apps.templater = {
+          type = "app";
+          program = "${self.packages.${system}.templater}/bin/templater";
+        };
+      }
+    )
+    // {
+      templates.default = {
+        path = ./template;
+        description = "DonQ's workstation configuration template";
       };
     };
-    homeManagerModules = {
-      default = {...}: {
-        home.packages = [pkgs.lolcat];
-      };
-    };
-
-    templates.default = {
-      path = ./template;
-      description = "DonQ's workstation configuration template";
-    };
-
-    packages.${system}.templater = pkgs.writeShellApplication {
-      name = "templater";
-      runtimeInputs = [pkgs.gnused];
-      text = ''
-        sed -e "s/HOST_NAME/$1/g" -e "s/USER_NAME/$2/g" ${self}/template/flake.nix > "$3"
-      '';
-    };
-
-    # USAGE: nix run .#templater -- hostname username path/to/output/flake.nix
-    apps.interpolate = {
-      type = "app";
-      program = "${self.packages.${system}.templater}/bin/templater";
-    };
-  };
 }
