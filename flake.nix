@@ -25,6 +25,10 @@
         darwinModules = {
           default = {...}: {
             environment.systemPackages = [pkgs.cowsay];
+
+            environment.shellAliases = {
+              snix = "darwin-rebuild switch --flake ~/config/nix/flake.nix";
+            };
           };
         };
         homeManagerModules = {
