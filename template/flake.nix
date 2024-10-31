@@ -37,11 +37,11 @@
             home-manager.darwinModules.home-manager
             {
               home-manager = {
-                home.stateVersion = stateVersion;
                 extraSpecialArgs = { inherit inputs outputs; };
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users."USERNAME".imports = [
+                  { home.stateVersion = stateVersion; }
                   donq.homeManagerModules."PLATFORM".default
                   # ./custom-homemanager-module.nix
                 ];
