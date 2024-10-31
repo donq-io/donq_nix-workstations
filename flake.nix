@@ -24,13 +24,8 @@
       in {
         darwinModules = {
           default = {...}: {
-            services.nix-daemon.enable = true;
-            
             environment.systemPackages = [pkgs.cowsay];
-
-            environment.shellAliases = {
-              snix = "darwin-rebuild switch --flake ~/config/nix/flake.nix";
-            };
+            imports = [./shared/configuration.nix];
           };
         };
         homeManagerModules = {

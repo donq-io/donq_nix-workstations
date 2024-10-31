@@ -3,7 +3,6 @@
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
 
-  # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
 
   nixpkgs.config.allowUnfree = true;
@@ -15,19 +14,7 @@
   # Set Git commit hash for darwin-version.
   system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
-  system.stateVersion = 4;
-
   security.pam.enableSudoTouchIdAuth = true;
-
-  networking.hostName = hostname;
-  networking.localHostName = hostname;
-
-  users.users."${user}" = {
-    home = "/Users/${user}";
-    shell = pkgs.fish;
-  };
 
   system.defaults.NSGlobalDomain = {
     InitialKeyRepeat = 15; # 25;
@@ -75,24 +62,7 @@
     EDITOR = "vim";
   };
 
-  # NOTE: this is the default in the DeterminateSystems conf and repairs nix-shell
   nix.extraOptions = ''
     extra-nix-path = nixpkgs=flake:nixpkgs
   '';
-
-  nix.linux-builder.enable = true;
-
-  launchd = {
-    user = {
-      agents = {
-        iterm2-start = {
-          command = "${pkgs.iterm2}/Contents/MacOS/iTerm2";
-          serviceConfig = {
-            KeepAlive = true;
-            RunAtLoad = true;
-          };
-        };
-      };
-    };
-  };
 }
