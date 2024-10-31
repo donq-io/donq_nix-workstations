@@ -24,14 +24,19 @@
     } @ inputs:
     let
       inherit (self) outputs;
-      stateVersion = "24.05";
+      homeStateVersion = "24.05";
+      systemStateVersion = 5;
     in
     {
       darwinConfigurations = {
         "HOSTNAME" = nix-darwin.lib.darwinSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
-            { nixpkgs.hostPlatform = "PLATFORM"; }
+            {
+              system.stateVersion = systemStateVersion;
+              nixpkgs.hostPlatform = "PLATFORM";
+              users.users."USERNAME".home = "/Users/USERNAME";
+            }
             donq.darwinModules."PLATFORM".default
             # ./custom-darwin-module.nix
             home-manager.darwinModules.home-manager
@@ -41,12 +46,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users."USERNAME".imports = [
-                  {
-                    home = {
-                      stateVersion = stateVersion;
-                      homeDirectory = "/Users/USERNAME";
-                    };
-                  }
+                  { home.stateVersion = homeStateVersion; }
                   donq.homeManagerModules."PLATFORM".default
                   # ./custom-homemanager-module.nix
                 ];
