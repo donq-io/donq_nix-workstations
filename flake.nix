@@ -30,7 +30,7 @@
         };
         homeManagerModules = {
           default = {...}: {
-            home.packages = [pkgs.lolcat];
+            imports = [./shared/home.nix];
           };
         };
 
