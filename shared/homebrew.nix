@@ -8,8 +8,6 @@
     ];
 
     casks = [
-      # "google-chrome"
-      # "firefox"
       "dbeaver-community"
       "openvpn-connect"
     ];
