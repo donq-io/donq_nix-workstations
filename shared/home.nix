@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    cz-cli
     nixpkgs-fmt
     iterm2
     age
