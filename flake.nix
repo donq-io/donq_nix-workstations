@@ -36,7 +36,7 @@
           };
           homeManagerModules = {
             default = { ... }: {
-              imports = [ (import ./shared/home.nix) pkgs ];
+              imports = [ ((import ./shared/home.nix) pkgs) ];
             };
           };
 
