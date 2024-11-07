@@ -31,7 +31,7 @@
           darwinModules = {
             default = { ... }: {
               environment.systemPackages = [ pkgs.cowsay ];
-              imports = [ ./shared/configuration.nix ];
+              imports = [ ((import ./shared/configuration.nix) { pkgs = pkgs; pkgs-unstable = pkgs-unstable; }) ];
             };
           };
           homeManagerModules = {

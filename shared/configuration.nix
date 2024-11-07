@@ -1,4 +1,5 @@
-{ pkgs, inputs, user, hostname, ... }: {
+{ pkgs, pkgs-unstable, ... }:
+{ inputs, user, hostname, ... }: {
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
