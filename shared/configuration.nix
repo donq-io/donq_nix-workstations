@@ -6,6 +6,8 @@
 
   nix.settings.experimental-features = "nix-command flakes";
 
+  nix.settings.trusted-users = [ "root" user ];
+
   nixpkgs.config.allowUnfree = true;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
