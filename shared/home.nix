@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
+    devenv
     nixpkgs-fmt
     iterm2
     age
