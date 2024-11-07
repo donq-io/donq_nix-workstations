@@ -36,7 +36,7 @@
           };
           homeManagerModules = {
             default = { ... }: {
-              imports = [ ((import ./shared/home.nix) pkgs pkgs-unstable) ];
+              imports = [ ((import ./shared/home.nix) { pkgs = pkgs; pkgs-unstable = pkgs-unstable; }) ];
             };
           };
 
