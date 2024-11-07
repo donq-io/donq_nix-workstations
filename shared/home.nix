@@ -6,7 +6,6 @@
     pkgs.age
     pkgs.just
     pkgs.go-task
-    pkgs.direnv
     pkgs.terraform
     pkgs.terraform-ls
     pkgs.awscli2
