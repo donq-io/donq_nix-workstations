@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # nix-darwin.url = "github:LnL7/nix-darwin";
     # nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -17,7 +17,7 @@
     inputs @ { self
     , flake-utils
     , nixpkgs
-      # , nixpkgs-unstable
+    , nixpkgs-unstable
     , ...
     }:
     flake-utils.lib.eachSystem [ "aarch64-darwin" "x86_64-darwin" ]
@@ -25,7 +25,7 @@
         system:
         let
           pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-          # pkgs-unstable = import nixpkgs-unstable { inherit system; };
+          pkgs-unstable = import nixpkgs-unstable { inherit system; };
         in
         {
           darwinModules = {
@@ -36,7 +36,7 @@
           };
           homeManagerModules = {
             default = { ... }: {
-              imports = [ ((import ./shared/home.nix) pkgs) ];
+              imports = [ ((import ./shared/home.nix) pkgs pkgs-unstable) ];
             };
           };
 
