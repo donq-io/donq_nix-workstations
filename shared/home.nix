@@ -1,20 +1,20 @@
-{ pkgs, pkgs-unstable, ... }: {
-  home.packages = [
-    pkgs-unstable.devenv
-    pkgs.nixpkgs-fmt
-    pkgs.iterm2
-    pkgs.age
-    pkgs.just
-    pkgs.go-task
-    pkgs.direnv
-    pkgs.terraform
-    pkgs.terraform-ls
-    pkgs.awscli2
-    pkgs.minikube
-    pkgs.kubectl
-    pkgs.k9s
-    pkgs.kustomize
-    pkgs.ansible
+{ pkgs, ... }: {
+  home.packages = with pkgs; [
+    devenv
+    nixpkgs-fmt
+    iterm2
+    age
+    just
+    go-task
+    direnv
+    terraform
+    terraform-ls
+    awscli2
+    minikube
+    kubectl
+    k9s
+    kustomize
+    ansible
   ];
 
   programs = {
