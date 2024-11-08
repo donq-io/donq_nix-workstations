@@ -32,7 +32,7 @@
     {
       darwinConfigurations = {
         "${hostname}" = nix-darwin.lib.darwinSystem {
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { inherit inputs outputs username hostname homeStateVersion systemStateVersion; };
           modules = [
             {
               system.stateVersion = systemStateVersion;
@@ -44,7 +44,7 @@
             home-manager.darwinModules.home-manager
             {
               home-manager = {
-                extraSpecialArgs = { inherit inputs outputs; };
+                extraSpecialArgs = { inherit inputs outputs username hostname homeStateVersion systemStateVersion; };
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users."${username}".imports = [
