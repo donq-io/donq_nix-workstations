@@ -6,7 +6,7 @@
 
   nix.settings.experimental-features = "nix-command flakes";
 
-  nix.settings.trusted-users = [ "root" user ];
+  nix.settings.trusted-users = [ "root" "federico" ];
 
   nixpkgs.config.allowUnfree = true;
 
