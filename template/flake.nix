@@ -28,28 +28,29 @@
       systemStateVersion = 5;
       username = "USERNAME";
       hostname = "HOSTNAME";
+      platform = "PLATFORM";
     in
     {
       darwinConfigurations = {
         "${hostname}" = nix-darwin.lib.darwinSystem {
-          specialArgs = { inherit inputs outputs username hostname homeStateVersion systemStateVersion; };
+          specialArgs = { inherit inputs outputs username hostname platform homeStateVersion systemStateVersion; };
           modules = [
             {
               system.stateVersion = systemStateVersion;
-              nixpkgs.hostPlatform = "PLATFORM";
+              nixpkgs.hostPlatform = platform;
               users.users."${username}".home = "/Users/${username}";
             }
-            donq.darwinModules."PLATFORM".default
+            donq.darwinModules."${platform}".default
             # ./custom-darwin-module.nix
             home-manager.darwinModules.home-manager
             {
               home-manager = {
-                extraSpecialArgs = { inherit inputs outputs username hostname homeStateVersion systemStateVersion; };
+                extraSpecialArgs = { inherit inputs outputs username hostname platform homeStateVersion systemStateVersion; };
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users."${username}".imports = [
                   { home.stateVersion = homeStateVersion; }
-                  donq.homeManagerModules."PLATFORM".default
+                  donq.homeManagerModules."${platform}".default
                   # ./custom-homemanager-module.nix
                 ];
               };
