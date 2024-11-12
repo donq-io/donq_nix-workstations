@@ -18,6 +18,7 @@
       # When the extension is already available in the default extensions set.
       vscodeExtensions = with pkgs-unstable.vscode-extensions; [
         jnoortheen.nix-ide
+        continue.continue
       ];
     })
   ];
