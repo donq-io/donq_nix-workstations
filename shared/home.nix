@@ -1,6 +1,5 @@
 { pkgs, pkgs-unstable, ... }: { ... }: {
   home.packages = [
-    pkgs-unstable.devenv
     pkgs.nixpkgs-fmt
     pkgs.iterm2
     pkgs.age
@@ -14,7 +13,9 @@
     pkgs.k9s
     pkgs.kustomize
     pkgs.ansible
+    pkgs-unstable.devenv
     pkgs-unstable.vscode-with-extensions
+    pkgs-unstable.vscode-extensions.jnoortheen.nix-ide
   ];
 
   programs = {
