@@ -14,12 +14,12 @@
     pkgs.kustomize
     pkgs.ansible
     pkgs-unstable.devenv
-    pkgs-unstable.vscode-with-extensions.override {
+    (pkgs-unstable.vscode-with-extensions.override {
       # When the extension is already available in the default extensions set.
       vscodeExtensions = with pkgs-unstable.vscode-extensions; [
         jnoortheen.nix-ide
       ];
-    }
+    })
   ];
 
   programs = {
