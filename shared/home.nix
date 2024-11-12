@@ -14,6 +14,7 @@
     pkgs.k9s
     pkgs.kustomize
     pkgs.ansible
+    pkgs.vscode-with-extensions
   ];
 
   programs = {
