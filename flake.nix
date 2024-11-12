@@ -25,7 +25,7 @@
         system:
         let
           pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-          pkgs-unstable = import nixpkgs-unstable { inherit system; };
+          pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true;};
         in
         {
           darwinModules = {
