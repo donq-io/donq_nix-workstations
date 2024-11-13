@@ -25,6 +25,7 @@
         {
           name = "claude-dev";
           publisher = "saoudrizwan";
+          version = "2.1.4";
         }
       ];
     })
