@@ -29,6 +29,7 @@
         bmewburn.vscode-intelephense-client
         eamodio.gitlens
       ]
+      # When the extension is only available in the vscode-marketplace set.
       ++ pkgs-unstable.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "claude-dev";
