@@ -26,7 +26,7 @@
           name = "claude-dev";
           publisher = "saoudrizwan";
           version = "2.1.5";
-          sha256 = "sha256-0r7x9q3yx8zn4scr0ncl3hx26cggwc7cpgpppd3xg7pnd8yf2mmy=";
+          sha256 = "sha256-zNcGoVN+h/AEDwKKyISEobuWr0hQUf7xk7e+qsE1ly4=";
         }
       ];
     })
