@@ -19,6 +19,13 @@
       vscodeExtensions = with pkgs-unstable.vscode-extensions; [
         jnoortheen.nix-ide
         continue.continue
+        esbenp.prettier-vscode
+      ]
+      ++ vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "claude-dev";
+          publisher = "saoudrizwan";
+        }
       ];
     })
   ];
