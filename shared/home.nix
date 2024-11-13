@@ -20,6 +20,13 @@
         jnoortheen.nix-ide
         continue.continue
         esbenp.prettier-vscode
+        mikestead.dotenv
+        editorconfig.editorconfig
+        mhutchie.git-graph
+        oderwat.indent-rainbow
+        bradlc.vscode-tailwindcss
+        hashicorp.terraform
+        bmewburn.vscode-intelephense-client
       ]
       ++ pkgs-unstable.vscode-utils.extensionsFromVscodeMarketplace [
         {
