@@ -27,6 +27,7 @@
         bradlc.vscode-tailwindcss
         hashicorp.terraform
         bmewburn.vscode-intelephense-client
+        eamodio.gitlens
       ]
       ++ pkgs-unstable.vscode-utils.extensionsFromVscodeMarketplace [
         {
