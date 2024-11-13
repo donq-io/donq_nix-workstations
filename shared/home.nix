@@ -21,7 +21,7 @@
         continue.continue
         esbenp.prettier-vscode
       ]
-      ++ vscode-utils.extensionsFromVscodeMarketplace [
+      ++ pkgs-unstable.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "claude-dev";
           publisher = "saoudrizwan";
