@@ -68,4 +68,8 @@
   nix.extraOptions = ''
     extra-nix-path = nixpkgs=flake:nixpkgs
   '';
+
+  environment.systemPackages = [
+    pkgs.darwin.xcode
+  ];
 }

@@ -1,6 +1,5 @@
 { pkgs, pkgs-unstable, ... }: { ... }: {
   home.packages = [
-    pkgs.darwin.xcode
     pkgs.nixpkgs-fmt
     pkgs.iterm2
     pkgs.age
