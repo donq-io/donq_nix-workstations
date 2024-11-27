@@ -70,6 +70,5 @@
   '';
 
   environment.systemPackages = [
-    pkgs.darwin.xcode
   ];
 }
