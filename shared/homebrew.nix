@@ -10,6 +10,7 @@
     casks = [
       "dbeaver-community"
       "openvpn-connect"
+      "mockoon"
     ];
 
     masApps = {
