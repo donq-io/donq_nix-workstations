@@ -1,4 +1,4 @@
-{ inputs, ... }: { username, ... }: {
+{ inputs, nix-homebrew, ... }: { username, ... }: {
   nix-homebrew = {
     enable = true;
 
