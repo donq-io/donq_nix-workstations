@@ -11,6 +11,21 @@
     # home-manager.url = "github:nix-community/home-manager/release-24.05";
     # home-manager.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
+
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    nix-homebrew.inputs.nixpkgs.follows = "nixpkgs";
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
   };
 
   outputs =
@@ -25,13 +40,16 @@
         system:
         let
           pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-          pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true;};
+          pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
         in
         {
           darwinModules = {
             default = { ... }: {
               environment.systemPackages = [ pkgs.cowsay ];
-              imports = [ ((import ./shared/configuration.nix) { pkgs = pkgs; pkgs-unstable = pkgs-unstable; }) ];
+              imports = [
+                ((import ./shared/configuration.nix) { pkgs = pkgs; pkgs-unstable = pkgs-unstable; })
+                ((import ./shared/nix-homebrew.nix) { inputs = inputs; })
+              ];
             };
           };
           homeManagerModules = {

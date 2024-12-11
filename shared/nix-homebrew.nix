@@ -1,8 +1,8 @@
-{ inputs, nix-homebrew, user, ... }: {
+{ inputs, ... }: { username, ... }: {
   nix-homebrew = {
     enable = true;
 
-    user = user;
+    user = username;
 
     mutableTaps = false;
     taps = {
