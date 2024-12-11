@@ -49,6 +49,7 @@
               environment.systemPackages = [ pkgs.cowsay ];
               imports = [
                 ((import ./shared/configuration.nix) { pkgs = pkgs; pkgs-unstable = pkgs-unstable; })
+                nix-homebrew.darwinModules.nix-homebrew
                 ((import ./shared/nix-homebrew.nix) { inputs = inputs; })
               ];
             };
