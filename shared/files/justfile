@@ -9,7 +9,7 @@ python:
     nix-shell --run zsh  -p python3 -p poetry
 [no-cd]
 rust:
-    nix-shell --run zsh  -p rustc
+    nix-shell --run zsh  -p rustc cargo
 [no-cd]
 go:
     nix-shell --run zsh  -p go
