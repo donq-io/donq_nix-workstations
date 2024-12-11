@@ -33,6 +33,7 @@
     , flake-utils
     , nixpkgs
     , nixpkgs-unstable
+    , nix-homebrew
     , ...
     }:
     flake-utils.lib.eachSystem [ "aarch64-darwin" "x86_64-darwin" ]
