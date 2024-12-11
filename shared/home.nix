@@ -28,16 +28,16 @@
         hashicorp.terraform
         bmewburn.vscode-intelephense-client
         eamodio.gitlens
-      ]
-      # When the extension is only available in the vscode-marketplace set.
-      ++ pkgs-unstable.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "claude-dev";
-          publisher = "saoudrizwan";
-          version = "2.1.5";
-          sha256 = "sha256-zNcGoVN+h/AEDwKKyISEobuWr0hQUf7xk7e+qsE1ly4=";
-        }
       ];
+      # When the extension is only available in the vscode-marketplace set.
+      # ++ pkgs-unstable.vscode-utils.extensionsFromVscodeMarketplace [
+      #   {
+      #     name = "claude-dev";
+      #     publisher = "saoudrizwan";
+      #     version = "2.1.5";
+      #     sha256 = "sha256-zNcGoVN+h/AEDwKKyISEobuWr0hQUf7xk7e+qsE1ly4=";
+      #   }
+      # ];
     })
   ];
 
