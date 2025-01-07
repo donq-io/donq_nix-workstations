@@ -1,7 +1,6 @@
 { pkgs, pkgs-unstable, ... }: { ... }: {
   home.packages = [
     pkgs.nixpkgs-fmt
-    pkgs.iterm2
     pkgs.age
     pkgs.just
     pkgs.go-task
@@ -13,6 +12,7 @@
     pkgs.k9s
     pkgs.kustomize
     pkgs.ansible
+    pkgs-unstable.iterm2
     pkgs-unstable.devenv
     pkgs-unstable.ngrok
     (pkgs-unstable.vscode-with-extensions.override {

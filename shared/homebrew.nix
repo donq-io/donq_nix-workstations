@@ -3,7 +3,7 @@
     enable = true;
 
     brews = [
-      "mysql-client@9.0"
+      "mysql-client@9.1"
       "libpq"
     ];
 
