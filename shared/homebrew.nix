@@ -11,6 +11,7 @@
       "dbeaver-community"
       "openvpn-connect"
       "mockoon"
+      "bruno"
       "raycast"
     ];
 
