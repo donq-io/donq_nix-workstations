@@ -12,7 +12,6 @@
       "openvpn-connect"
       "mockoon"
       "raycast"
-      "bruno"
     ];
 
     # use mdm to install apps
