@@ -56,7 +56,7 @@
   system.startup.chime = false;
 
   environment.shellAliases = {
-    snix = "darwin-rebuild switch --flake ~/Workspace/nix/flake.nix#dq-matterhorn";
+    snix = "darwin-rebuild switch --flake ~/.config/nix";
   };
 
   fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "Hack" ]; }) ];
