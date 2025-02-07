@@ -5,6 +5,7 @@
     brews = [
       "mysql-client"
       "libpq"
+      "watchman"
     ];
 
     casks = [
