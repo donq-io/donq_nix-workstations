@@ -14,6 +14,7 @@
       "mockoon"
       "bruno"
       "raycast"
+      "loom"
     ];
 
     # use mdm to install apps
