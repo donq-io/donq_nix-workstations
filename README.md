@@ -9,7 +9,7 @@ nix flake init -t 'github:donq-io/donq_nix-workstations'
 or use the templating tool to generate a custom one in a specific path
 
 ```bash
-nix run 'github:donq-io/donq_nix-workstations?ref=main#templater' myHostname myUsername myPlatform path/to/output/flake.nix
+nix run 'github:donq-io/donq_nix-workstations?ref=main#templater' myUsername myPlatform path/to/output/flake.nix
 ```
 
 If a system is already configured, you can simply add the `donq` input to the existing flake and import its modules as the template above shows.

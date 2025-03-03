@@ -67,11 +67,11 @@
             text = ''
               flake_directory=$(dirname "$4")
               mkdir -p "$flake_directory"
-              sed -e "s/HOSTNAME/$1/g" -e "s/USERNAME/$2/g" -e "s/PLATFORM/$3/g" ${self}/template/flake.nix > "$4"
+              sed -e "s/USERNAME/$2/g" -e "s/PLATFORM/$3/g" ${self}/template/flake.nix > "$4"
             '';
           };
 
-          # USAGE: nix run .#templater -- hostname username platform path/to/output/flake.nix
+          # USAGE: nix run .#templater -- username platform path/to/output/flake.nix
           apps.templater = {
             type = "app";
             program = "${self.packages.${system}.templater}/bin/templater";

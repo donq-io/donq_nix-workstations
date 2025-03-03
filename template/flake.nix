@@ -27,13 +27,12 @@
       homeStateVersion = "24.11";
       systemStateVersion = 5;
       username = "USERNAME";
-      hostname = "HOSTNAME";
       platform = "PLATFORM";
     in
     {
       darwinConfigurations = {
-        "${hostname}" = nix-darwin.lib.darwinSystem {
-          specialArgs = { inherit inputs outputs username hostname platform homeStateVersion systemStateVersion; };
+        default = nix-darwin.lib.darwinSystem {
+          specialArgs = { inherit inputs outputs username platform homeStateVersion systemStateVersion; };
           modules = [
             {
               system.stateVersion = systemStateVersion;
@@ -45,7 +44,7 @@
             home-manager.darwinModules.home-manager
             {
               home-manager = {
-                extraSpecialArgs = { inherit inputs outputs username hostname platform homeStateVersion systemStateVersion; };
+                extraSpecialArgs = { inherit inputs outputs username platform homeStateVersion systemStateVersion; };
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users."${username}".imports = [
