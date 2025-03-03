@@ -56,7 +56,7 @@
   system.startup.chime = false;
 
   environment.shellAliases = {
-    snix = "nix flake lock --update-input donq ~/.config/nix && nix run nix-darwin -- switch --flake ~/.config/nix";
+    snix = "nix flake lock --update-input donq ~/.config/nix && nix run nix-darwin -- switch --flake ~/.config/nix#default";
   };
 
   fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "Hack" ]; }) ];
