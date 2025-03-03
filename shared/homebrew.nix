@@ -13,7 +13,7 @@
       "openvpn-connect"
       "mockoon"
       "bruno"
-      "raycast"
+      # "raycast" temporary disabled due wrong version on brew
       "loom"
     ];
 
