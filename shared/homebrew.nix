@@ -17,9 +17,5 @@
       "loom"
       "docker"
     ];
-
-    caskArgs = {
-      require_sha = false;
-    };
   };
 }
