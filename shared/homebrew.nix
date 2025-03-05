@@ -15,7 +15,7 @@
       "bruno"
       # "raycast" temporary disabled due wrong version on brew
       "loom"
-      "docker"
+      # "docker"
     ];
   };
 }
