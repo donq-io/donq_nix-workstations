@@ -69,6 +69,10 @@
     extra-nix-path = nixpkgs=flake:nixpkgs
   '';
 
+  system.activationScripts.extraActivation.text = ''
+    softwareupdate --install-rosetta --agree-to-license
+  '';
+
   environment.systemPackages = [
   ];
 }
