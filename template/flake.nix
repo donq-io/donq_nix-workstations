@@ -47,6 +47,7 @@
                 extraSpecialArgs = { inherit inputs outputs username platform homeStateVersion systemStateVersion; };
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                backupFileExtension = "nix.old";
                 users."${username}".imports = [
                   { home.stateVersion = homeStateVersion; }
                   donq.homeManagerModules."${platform}".default
