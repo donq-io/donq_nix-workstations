@@ -65,9 +65,9 @@
             name = "templater";
             runtimeInputs = [ pkgs.gnused ];
             text = ''
-              flake_directory=$(dirname "$4")
+              flake_directory=$(dirname "$3")
               mkdir -p "$flake_directory"
-              sed -e "s/USERNAME/$2/g" -e "s/PLATFORM/$3/g" ${self}/template/flake.nix > "$4"
+              sed -e "s/USERNAME/$1/g" -e "s/PLATFORM/$2/g" ${self}/template/flake.nix > "$3"
             '';
           };
 
