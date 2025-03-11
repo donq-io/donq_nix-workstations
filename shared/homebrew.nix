@@ -16,6 +16,7 @@
       "raycast"
       "loom"
       "docker"
+      "cloudflare-warp"
     ];
   };
 }
