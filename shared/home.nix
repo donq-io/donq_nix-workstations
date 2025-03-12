@@ -49,10 +49,10 @@
       enable = true;
 
       matchBlocks = {
-        "10.222.222.*" = {
-          user = "root";
-          proxyJump = "pve-bastion";
-        };
+        # "10.222.222.*" = {
+        #   user = "root";
+        #   proxyJump = "pve-bastion";
+        # };
 
         "nix-starter" = {
           hostname = "10.222.222.199";
