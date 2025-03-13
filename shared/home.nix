@@ -13,6 +13,7 @@
     pkgs.kustomize
     pkgs.ansible
     pkgs.ffmpeg
+    pkgs.openvpn
     pkgs-unstable.iterm2
     pkgs-unstable.devenv
     pkgs-unstable.ngrok
