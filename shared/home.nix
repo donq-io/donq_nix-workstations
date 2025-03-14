@@ -18,6 +18,7 @@
     pkgs-unstable.devenv
     pkgs-unstable.ngrok
     pkgs-unstable.arc-browser
+    pkgs-unstable.sublime4
     (pkgs-unstable.vscode-with-extensions.override {
       # When the extension is already available in the default extensions set.
       vscodeExtensions = with pkgs-unstable.vscode-extensions; [
