@@ -18,6 +18,7 @@
       "docker"
       "cloudflare-warp"
       "sublime-text"
+      "switchhosts"
     ];
   };
 }
