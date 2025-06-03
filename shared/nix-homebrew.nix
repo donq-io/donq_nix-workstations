@@ -4,7 +4,7 @@
     user = username;
     mutableTaps = false;
     autoMigrate = true;
-    enableRosetta = true;
+    #enableRosetta = true;
 
     taps = {
       "homebrew/homebrew-core" = inputs.homebrew-core;
