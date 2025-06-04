@@ -17,6 +17,7 @@
       "loom"
       "docker"
       "cloudflare-warp"
+      "tailscale"
       "sublime-text"
       "switchhosts"
     ];
