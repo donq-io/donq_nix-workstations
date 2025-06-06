@@ -14,6 +14,10 @@
     pkgs.ansible
     pkgs.ffmpeg
     pkgs.openvpn
+
+    pkgs.nodejs
+    pkgs.corepack
+
     pkgs-unstable.iterm2
     pkgs-unstable.devenv
     pkgs-unstable.ngrok
