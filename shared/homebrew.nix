@@ -13,6 +13,7 @@
       "openvpn-connect"
       "mockoon"
       "bruno"
+      "yaak"
       "raycast"
       "loom"
       "docker"
