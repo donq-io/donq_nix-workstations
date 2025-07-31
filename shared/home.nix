@@ -7,6 +7,7 @@
     pkgs.terraform
     pkgs.terraform-ls
     pkgs.awscli2
+    pkgs.ssm-session-manager-plugin
     pkgs.minikube
     pkgs.kubectl
     pkgs.k9s
