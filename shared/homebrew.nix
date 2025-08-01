@@ -6,6 +6,7 @@
       "mysql-client"
       "libpq"
       "watchman"
+      "gemini-cli"
     ];
 
     casks = [
