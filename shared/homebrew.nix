@@ -6,10 +6,10 @@
       "mysql-client"
       "libpq"
       "watchman"
-      "gemini-cli"
     ];
 
     casks = [
+      "gemini-cli"
       "dbeaver-community"
       "openvpn-connect"
       "mockoon"
