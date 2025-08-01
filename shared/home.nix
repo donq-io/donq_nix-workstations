@@ -23,6 +23,7 @@
     pkgs-unstable.ngrok
     pkgs-unstable.arc-browser
     pkgs-unstable.vscode
+    pkgs-unstable.gemini-cli
   ];
 
   programs = {

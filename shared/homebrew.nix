@@ -9,7 +9,6 @@
     ];
 
     casks = [
-      "gemini-cli"
       "dbeaver-community"
       "openvpn-connect"
       "mockoon"
