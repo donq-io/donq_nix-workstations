@@ -21,6 +21,7 @@
       "tailscale"
       "sublime-text"
       "switchhosts"
+      "redis-insight"
     ];
   };
 }
