@@ -30,21 +30,10 @@
       enable = true;
 
       matchBlocks = {
-        # "10.222.222.*" = {
-        #   user = "root";
-        #   proxyJump = "pve-bastion";
-        # };
-
-        "nix-starter" = {
-          hostname = "10.222.222.199";
-          user = "root";
-          proxyJump = "pve-bastion";
-        };
-
-        "pve-bastion" = {
-          hostname = "admin100.donq.org";
-          port = 49152;
-          user = "root";
+        "*" = {
+          SetEnv = {
+            TERM = "xterm-256color";
+          };
         };
       };
     };
