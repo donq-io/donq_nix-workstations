@@ -22,6 +22,7 @@
       "sublime-text"
       "switchhosts"
       "redis-insight"
+      "ghostty"
     ];
   };
 }
