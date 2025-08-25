@@ -32,7 +32,7 @@
       matchBlocks = {
         "*" = {
           setEnv = {
-            TERM = "xterm-256color";
+            TERM = "xterm-256color"; # ghostty requires as it is not always recognized by remote server
           };
         };
       };
