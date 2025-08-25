@@ -31,7 +31,7 @@
 
       matchBlocks = {
         "*" = {
-          SetEnv = {
+          setEnv = {
             TERM = "xterm-256color";
           };
         };
