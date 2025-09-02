@@ -6,6 +6,7 @@
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-25-05.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     # nb: passando alla 25-05 nix-darwin ha modificato modalità di attivazione
     # passando al system-wide. Quando aggiorneremo a quella versione dovremmo sistemare anche questo

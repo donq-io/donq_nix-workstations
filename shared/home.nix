@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }: { ... }: {
+{ pkgs, pkgs-unstable, pkgs-25-05, ... }: { ... }: {
   home.packages = [
     pkgs.nixpkgs-fmt
     pkgs.age

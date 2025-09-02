@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-25-05.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     # nix-darwin.url = "github:LnL7/nix-darwin";
     # nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -33,6 +34,7 @@
     , flake-utils
     , nixpkgs
     , nixpkgs-unstable
+    , nixpkgs-25-05
     , nix-homebrew
     , ...
     }:
@@ -42,13 +44,14 @@
         let
           pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
           pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
+          pkgs-25-05 = import nixpkgs-25-05 { inherit system; config.allowUnfree = true; };
         in
         {
           darwinModules = {
             default = { ... }: {
               environment.systemPackages = [ pkgs.cowsay ];
               imports = [
-                ((import ./shared/configuration.nix) { pkgs = pkgs; pkgs-unstable = pkgs-unstable; })
+                ((import ./shared/configuration.nix) { pkgs = pkgs; pkgs-unstable = pkgs-unstable; pkgs-25-05 = pkgs-25-05; })
                 nix-homebrew.darwinModules.nix-homebrew
                 ((import ./shared/nix-homebrew.nix) { inputs = inputs; })
                 (import ./shared/homebrew.nix)
@@ -57,7 +60,7 @@
           };
           homeManagerModules = {
             default = { ... }: {
-              imports = [ ((import ./shared/home.nix) { pkgs = pkgs; pkgs-unstable = pkgs-unstable; }) ];
+              imports = [ ((import ./shared/home.nix) { pkgs = pkgs; pkgs-unstable = pkgs-unstable; pkgs-25-05 = pkgs-25-05; }) ];
             };
           };
 
