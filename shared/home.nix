@@ -16,7 +16,7 @@
     pkgs.ffmpeg
     pkgs.openvpn
 
-    pkgs.nodejs
+    pkgs.nodejs_22
 
     pkgs-unstable.iterm2
     pkgs-unstable.devenv
