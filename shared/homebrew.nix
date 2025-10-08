@@ -21,6 +21,7 @@
       "redis-insight"
       "arc"
       "chatgpt"
+      "google-chrome"
     ];
   };
 }
