@@ -11,18 +11,16 @@
     casks = [
       "dbeaver-community"
       "openvpn-connect"
-      "mockoon"
-      "bruno"
       "yaak"
       "raycast"
       "loom"
-      "docker"
+      "docker-desktop"
       "cloudflare-warp"
-      "tailscale"
       "sublime-text"
       "switchhosts"
       "redis-insight"
-      "ghostty"
+      "arc"
+      "chatgpt"
     ];
   };
 }

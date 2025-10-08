@@ -1,8 +1,8 @@
-{ pkgs, pkgs-unstable, pkgs-25-05, ... }:
+{ pkgs, pkgs-unstable, ... }:
 { inputs, username, ... }: {
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
+  system.primaryUser = username;
 
   services.openssh.enable = true;
 
@@ -18,8 +18,6 @@
 
   # Set Git commit hash for darwin-version.
   system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
-
-  security.pam.enableSudoTouchIdAuth = true;
 
   system.defaults.NSGlobalDomain = {
     InitialKeyRepeat = 15; # 25;
@@ -61,7 +59,9 @@
     snix = "nix flake lock --update-input donq ~/.config/nix && darwin-rebuild switch --flake ~/.config/nix#default";
   };
 
-  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "Hack" ]; }) ];
+  fonts.packages = [
+    pkgs.nerd-fonts.hack
+  ];
 
   environment.variables = {
     EDITOR = "vim";
@@ -69,10 +69,6 @@
 
   nix.extraOptions = ''
     extra-nix-path = nixpkgs=flake:nixpkgs
-  '';
-
-  system.activationScripts.extraActivation.text = ''
-    softwareupdate --install-rosetta --agree-to-license
   '';
 
   environment.systemPackages = [

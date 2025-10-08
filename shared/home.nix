@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, pkgs-25-05, ... }: { ... }: {
+{ pkgs, pkgs-unstable, ... }: { ... }: {
   home.packages = [
     pkgs.nixpkgs-fmt
     pkgs.age
@@ -16,12 +16,11 @@
     pkgs.ffmpeg
     pkgs.openvpn
 
-    pkgs-25-05.nodejs_22
+    pkgs.nodejs_22
 
     pkgs-unstable.iterm2
     pkgs-unstable.devenv
     pkgs-unstable.ngrok
-    pkgs-unstable.arc-browser
     pkgs-unstable.vscode
   ];
 
@@ -87,7 +86,7 @@
       shellAliases = {
         t = "timew";
       };
-      initExtra = ''
+      initContent = ''
         # Usage: ssh-L [user@]host ports...
         ssh-L () { ssh -vN $(printf ' -L %1$s:localhost:%s' ''${@:2}) $1 }
       '';
