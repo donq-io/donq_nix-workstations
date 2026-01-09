@@ -2,6 +2,9 @@
 { inputs, username, ... }: {
   # Auto upgrade nix package and the daemon service.
   # nix.package = pkgs.nix;
+
+  nix.enable = false;
+
   system.primaryUser = username;
 
   services.openssh.enable = true;
