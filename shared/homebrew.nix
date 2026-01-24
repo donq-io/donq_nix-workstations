@@ -6,6 +6,7 @@
       "mysql-client"
       "libpq"
       "watchman"
+      "gemini-cli"
     ];
 
     casks = [
@@ -22,7 +23,6 @@
       "arc"
       "chatgpt"
       "google-chrome"
-      "gemini-cli"
     ];
   };
 }
