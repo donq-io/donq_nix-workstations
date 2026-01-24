@@ -2,6 +2,12 @@
   homebrew = {
     enable = true;
 
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "uninstall";
+      upgrade = true;
+    };
+
     brews = [
       "mysql-client"
       "libpq"
