@@ -22,6 +22,7 @@
       "arc"
       "chatgpt"
       "google-chrome"
+      "gemini-cli"
     ];
   };
 }
