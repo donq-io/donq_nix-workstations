@@ -14,7 +14,6 @@
       "watchman"
       "gemini-cli"
       "opencode"
-      "claude-code"
     ];
 
     casks = [
@@ -30,6 +29,7 @@
       "redis-insight"
       "arc"
       "chatgpt"
+      "claude-code"
       "google-chrome"
     ];
   };
