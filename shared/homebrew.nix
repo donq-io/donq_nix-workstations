@@ -14,6 +14,7 @@
       "watchman"
       "gemini-cli"
       "opencode"
+      "claude-code"
     ];
 
     casks = [
