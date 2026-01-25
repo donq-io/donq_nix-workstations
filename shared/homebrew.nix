@@ -13,6 +13,7 @@
       "libpq"
       "watchman"
       "gemini-cli"
+      "opencode"
     ];
 
     casks = [
