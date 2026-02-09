@@ -1,7 +1,7 @@
 { pkgs, pkgs-unstable, ... }: { ... }: {
-  home.file.".config/nix/nix.conf".text = ''
-    experimental-features = nix-command flakes
-  '';
+  home.sessionVariables = {
+    NIX_CONFIG = "experimental-features = nix-command flakes";
+  };
 
   home.packages = [
     pkgs.nixpkgs-fmt
