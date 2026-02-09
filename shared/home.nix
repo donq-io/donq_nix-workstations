@@ -1,6 +1,7 @@
 { pkgs, pkgs-unstable, ... }: { ... }: {
   home.sessionVariables = {
     NIX_CONFIG = "experimental-features = nix-command flakes";
+    NIX_PATH = "nixpkgs=flake:nixpkgs";
   };
 
   home.packages = [
