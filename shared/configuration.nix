@@ -59,7 +59,7 @@
   system.startup.chime = false;
 
   environment.shellAliases = {
-    snix = "nix flake lock --update-input donq ~/.config/nix && sudo darwin-rebuild switch --flake ~/.config/nix#default";
+    snix = "nix flake update donq ~/.config/nix && sudo darwin-rebuild switch --flake ~/.config/nix#default";
   };
 
   fonts.packages = [
