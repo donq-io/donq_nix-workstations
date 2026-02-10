@@ -20,6 +20,7 @@
     pkgs.ansible
     pkgs.ffmpeg
     pkgs.openvpn
+    pkgs.neovim
 
     pkgs.nodejs_22
 
