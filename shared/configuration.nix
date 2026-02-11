@@ -1,5 +1,5 @@
 { pkgs, pkgs-unstable, ... }:
-{ inputs, username, ... }: {
+{ inputs, lib, username, ... }: {
   # Auto upgrade nix package and the daemon service.
   # nix.package = pkgs.nix;
 
@@ -7,7 +7,8 @@
 
   system.primaryUser = username;
 
-  security.pam.services.sudo_local.enable = false;
+  security.pam.services.sudo.enable = lib.mkForce false;
+  security.pam.services.sudo_local.enable = lib.mkForce false;
 
   services.openssh.enable = true;
 
