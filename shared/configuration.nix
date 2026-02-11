@@ -7,6 +7,8 @@
 
   system.primaryUser = username;
 
+  security.pam.services.sudo_local.enable = false;
+
   services.openssh.enable = true;
 
   nix.settings.experimental-features = "nix-command flakes";
