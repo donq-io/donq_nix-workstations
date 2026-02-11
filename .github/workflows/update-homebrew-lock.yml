@@ -1,0 +1,29 @@
+name: Update Homebrew lock
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Update Homebrew inputs
+        run: nix flake update homebrew-core homebrew-cask homebrew-bundle
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --exit-code flake.lock > /dev/null 2>&1; then
+            echo "No changes to flake.lock"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add flake.lock
+          git commit -m "chore: update Homebrew lock inputs"
+          git push
