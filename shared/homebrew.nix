@@ -30,6 +30,7 @@
       "arc"
       "chatgpt"
       "claude-code"
+      "codex"
       "google-chrome"
     ];
   };
