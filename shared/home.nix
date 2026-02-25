@@ -1,4 +1,9 @@
 { pkgs, pkgs-unstable, ... }: { ... }: {
+  home.sessionPath = [
+    "$HOME/.local/bin"
+    "$HOME/go/bin"
+  ];
+
   home.sessionVariables = {
     NIX_CONFIG = "experimental-features = nix-command flakes";
     NIX_PATH = "nixpkgs=flake:nixpkgs";
