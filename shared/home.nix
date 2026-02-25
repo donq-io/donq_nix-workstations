@@ -24,6 +24,8 @@
 
     pkgs.nodejs_22
 
+    pkgs-unstable.python314
+    pkgs-unstable.python314Packages.pip
     pkgs-unstable.iterm2
     pkgs-unstable.devenv
     pkgs-unstable.ngrok
