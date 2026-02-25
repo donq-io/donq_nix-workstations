@@ -26,6 +26,7 @@
 
     pkgs-unstable.python314
     pkgs-unstable.python314Packages.pip
+    pkgs-unstable.python314Packages.uv
     pkgs-unstable.iterm2
     pkgs-unstable.devenv
     pkgs-unstable.ngrok
