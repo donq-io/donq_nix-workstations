@@ -14,6 +14,7 @@
       "watchman"
       "gemini-cli"
       "gh"
+      "glow"
       "opencode"
     ];
 
