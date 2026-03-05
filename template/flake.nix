@@ -9,8 +9,7 @@
 
     nix-darwin.follows = "donq/nix-darwin";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.follows = "donq/home-manager";
   };
 
   outputs =
