@@ -31,6 +31,7 @@
       "redis-insight"
       "arc"
       "chatgpt"
+      "claude"
       "claude-code"
       "codex"
       "google-chrome"
