@@ -34,6 +34,7 @@
       "claude"
       "claude-code"
       "codex"
+      "codex-app"
       "google-chrome"
     ];
   };
