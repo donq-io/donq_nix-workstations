@@ -39,18 +39,15 @@
       (
         system:
         let
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-            overlays = [
-              (_final: _prev: { ruby_4_0 = (import nixpkgs-unstable { inherit system; }).ruby_4_0; })
-            ];
-          };
+          pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
           pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
         in
         {
           darwinModules = {
             default = { ... }: {
+              nixpkgs.overlays = [
+                (_final: _prev: { ruby_4_0 = (import nixpkgs-unstable { inherit system; }).ruby_4_0; })
+              ];
               environment.systemPackages = [ pkgs.cowsay ];
               imports = [
                 ((import ./shared/configuration.nix) { pkgs = pkgs; pkgs-unstable = pkgs-unstable; })
