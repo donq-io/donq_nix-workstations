@@ -14,7 +14,7 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@main
 
       - name: Update Homebrew inputs
-        run: nix flake update homebrew-core homebrew-cask homebrew-bundle
+        run: nix flake update homebrew-core homebrew-cask homebrew-bundle nix-homebrew
 
       - name: Commit and push if changed
         run: |
