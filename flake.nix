@@ -13,7 +13,6 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    nix-homebrew.inputs.nixpkgs.follows = "nixpkgs";
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
       flake = false;
@@ -40,7 +39,13 @@
       (
         system:
         let
-          pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+            overlays = [
+              (_final: _prev: { ruby_4_0 = (import nixpkgs-unstable { inherit system; }).ruby_4_0; })
+            ];
+          };
           pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
         in
         {
