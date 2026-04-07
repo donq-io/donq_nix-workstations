@@ -3,16 +3,15 @@
     "brew-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1774235677,
-        "narHash": "sha256-0ryNYmzDAeRlrzPTAgmzGH/Cgc8iv/LBN6jWGUANvIk=",
+        "lastModified": 1775583540,
+        "narHash": "sha256-pBrHDIKwlv8HsA/nkHM4DXDsnClKRpIHu2NfQ2gy+2U=",
         "owner": "Homebrew",
         "repo": "brew",
-        "rev": "894a3d23ac0c8aaf561b9874b528b9cb2e839201",
+        "rev": "9f7d5c562c205738d7ea3dedb9072f1e7e6ff382",
         "type": "github"
       },
       "original": {
         "owner": "Homebrew",
-        "ref": "5.1.1",
         "repo": "brew",
         "type": "github"
       }
@@ -75,11 +74,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1775539955,
-        "narHash": "sha256-jVS9kkf+Y4FUfu5ltzq4jwlEx1N7+cvRSwdk7ux75+g=",
+        "lastModified": 1775591339,
+        "narHash": "sha256-SMmm1u5o53YUo7cWtr85lxuF730rscom3PHdVYPiMoo=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "fc060312dd0dd57e6444a456add5d4db9489c9cc",
+        "rev": "391c232f0522d2495fc0e9784d4f5de8fb70aacf",
         "type": "github"
       },
       "original": {
@@ -91,11 +90,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1775541300,
-        "narHash": "sha256-L0aiApqeaJfHEgFZs1Ngr3UQE5vya2bW0ryfd8GMCxo=",
+        "lastModified": 1775589788,
+        "narHash": "sha256-VlRADs3fhf0NNyYnYyQMnvAk84pNQT6F3VNAMp01FAE=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "7e3c00c013fe3f2703669b8a651fe7b9ba61a067",
+        "rev": "c4ac0a85880c68ec353be7ff156d4e94b7c1ea8d",
         "type": "github"
       },
       "original": {
@@ -127,7 +126,9 @@
     },
     "nix-homebrew": {
       "inputs": {
-        "brew-src": "brew-src"
+        "brew-src": [
+          "brew-src"
+        ]
       },
       "locked": {
         "lastModified": 1774720267,
@@ -177,6 +178,7 @@
     },
     "root": {
       "inputs": {
+        "brew-src": "brew-src",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "homebrew-bundle": "homebrew-bundle",

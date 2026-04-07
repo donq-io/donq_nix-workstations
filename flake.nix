@@ -12,7 +12,14 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
 
+    # Keep the Homebrew frontend in sync with the moving core/cask taps.
+    brew-src = {
+      url = "github:Homebrew/brew";
+      flake = false;
+    };
+
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    nix-homebrew.inputs.brew-src.follows = "brew-src";
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
       flake = false;
