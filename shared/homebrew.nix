@@ -32,7 +32,7 @@
       "arc"
       "chatgpt"
       "claude"
-      "claude-code"
+      "claude-code@latest"
       "codex"
       "codex-app"
       "google-chrome"
