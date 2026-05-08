@@ -28,6 +28,7 @@
     pkgs.neovim
 
     pkgs.nodejs_22
+    pkgs.bun
 
     pkgs-unstable.python314
     pkgs-unstable.python314Packages.pip
