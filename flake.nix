@@ -12,7 +12,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
 
-    # Keep the Homebrew frontend in sync with the moving core/cask taps.
+    # Pin the Homebrew frontend itself. Formulae/casks come from the JSON API
+    # (formulae.brew.sh), so we no longer pin homebrew-core/homebrew-cask.
     brew-src = {
       url = "github:Homebrew/brew";
       flake = false;
@@ -20,14 +21,6 @@
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     nix-homebrew.inputs.brew-src.follows = "brew-src";
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
       flake = false;
