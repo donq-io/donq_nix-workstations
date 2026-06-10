@@ -32,7 +32,9 @@
       "arc"
       "chatgpt"
       "claude"
-      "claude-code@latest"
+      # `version :latest` cask: `brew upgrade` skips it unless greedy, so snix
+      # would never pull a newer Claude Code without this.
+      { name = "claude-code@latest"; greedy = true; }
       "codex"
       "codex-app"
       "google-chrome"
