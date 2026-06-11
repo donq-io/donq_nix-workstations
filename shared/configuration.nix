@@ -59,7 +59,14 @@
   system.startup.chime = false;
 
   environment.shellAliases = {
-    snix = "nix flake update donq --flake ~/.config/nix && sudo darwin-rebuild switch --flake ~/.config/nix#default";
+    # `brew update` refreshes Homebrew's JSON API catalog before the rebuild's
+    # `brew bundle` runs. The nix-homebrew brew wrapper hardcodes
+    # HOMEBREW_NO_AUTO_UPDATE=1, so brew never refreshes the catalog on its own;
+    # since we install formulae/casks from the API (not pinned git taps), without
+    # this explicit update brew never sees new versions and upgrade is a no-op.
+    # It runs as the user so it warms the same ~/Library/Caches/Homebrew/api that
+    # the activation's `brew bundle` (run as this user) then reads.
+    snix = "nix flake update donq --flake ~/.config/nix && brew update && sudo darwin-rebuild switch --flake ~/.config/nix#default";
   };
 
   fonts.packages = [
