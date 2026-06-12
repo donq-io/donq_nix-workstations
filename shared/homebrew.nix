@@ -16,6 +16,7 @@
       "gh"
       "glow"
       "opencode"
+      "stripe-cli"
     ];
 
     casks = [
