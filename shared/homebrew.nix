@@ -17,6 +17,7 @@
       "glow"
       "opencode"
       "stripe-cli"
+      "tmux"
     ];
 
     casks = [
