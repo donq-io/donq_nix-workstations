@@ -33,7 +33,6 @@
       "redis-insight"
       "arc"
       "chatgpt"
-      "claude"
       # `version :latest` cask: `brew upgrade` skips it unless greedy, so snix
       # would never pull a newer Claude Code without this.
       { name = "claude-code@latest"; greedy = true; }
