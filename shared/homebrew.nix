@@ -38,6 +38,7 @@
       "codex"
       "codex-app"
       "google-chrome"
+      "gcloud-cli"
     ];
   };
 }
