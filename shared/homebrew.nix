@@ -15,6 +15,7 @@
       "gemini-cli"
       "gh"
       "glow"
+      "googleworkspace-cli"
       "opencode"
       "stripe-cli"
       "tmux"
