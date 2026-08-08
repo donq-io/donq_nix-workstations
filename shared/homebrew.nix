@@ -12,6 +12,7 @@
       "mysql-client"
       "libpq"
       "watchman"
+      "gcx"
       "gemini-cli"
       "gh"
       "glow"
