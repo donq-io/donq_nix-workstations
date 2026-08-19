@@ -35,33 +35,69 @@
     , nix-homebrew
     , ...
     }:
+    let
+      overlays = {
+        # Exposes this flake's nixpkgs-unstable as `pkgs.unstable`.
+        unstable-packages = final: _prev: {
+          unstable = import nixpkgs-unstable {
+            system = final.stdenv.hostPlatform.system;
+            config.allowUnfree = true;
+          };
+        };
+      };
+
+      # All modules are system-agnostic: they take `pkgs` from module args and
+      # never instantiate nixpkgs themselves. Consumers pick the pieces they
+      # want; `default` aggregates everything for fleet machines.
+      darwinModules = rec {
+        # Baseline plumbing: Determinate nix, primaryUser, shells, snix alias.
+        # NOTE: assumes Nix is managed by the Determinate installer
+        # (nix.enable = false) — don't import this on a machine where
+        # nix-darwin manages the nix daemon/settings itself.
+        core = { ... }: {
+          imports = [ ./shared/darwin/core.nix ];
+          nixpkgs.overlays = [
+            overlays.unstable-packages
+            (final: _prev: { ruby_4_0 = final.unstable.ruby_4_0; })
+          ];
+        };
+        # Opinionated macOS UI defaults (all mkDefault: override freely).
+        macos-defaults = ./shared/darwin/macos-defaults.nix;
+        # Declarative Homebrew: nix-homebrew wiring plus the org package list.
+        homebrew = { ... }: {
+          imports = [
+            nix-homebrew.darwinModules.nix-homebrew
+            (import ./shared/darwin/nix-homebrew.nix { inherit inputs; })
+            ./shared/darwin/homebrew.nix
+          ];
+        };
+        default = { ... }: { imports = [ core macos-defaults homebrew ]; };
+        # Legacy aliases: generated machine flakes reference
+        # darwinModules."<platform>".default.
+        aarch64-darwin.default = default;
+        x86_64-darwin.default = default;
+      };
+
+      homeManagerModules = rec {
+        # Org development toolchain; needs an `unstable` overlay on pkgs
+        # (darwinModules.core provides one).
+        dev-tools = ./shared/hm/dev-tools.nix;
+        git = ./shared/hm/git.nix;
+        shell = ./shared/hm/shell.nix;
+        dotfiles = ./shared/hm/dotfiles.nix;
+        default = { ... }: { imports = [ dev-tools git shell dotfiles ]; };
+        # Legacy aliases, as above.
+        aarch64-darwin.default = default;
+        x86_64-darwin.default = default;
+      };
+    in
     flake-utils.lib.eachSystem [ "aarch64-darwin" "x86_64-darwin" ]
       (
         system:
         let
           pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-          pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
         in
         {
-          darwinModules = {
-            default = { ... }: {
-              nixpkgs.overlays = [
-                (_final: _prev: { ruby_4_0 = pkgs-unstable.ruby_4_0; })
-              ];
-              imports = [
-                ((import ./shared/configuration.nix) { pkgs = pkgs; pkgs-unstable = pkgs-unstable; })
-                nix-homebrew.darwinModules.nix-homebrew
-                ((import ./shared/nix-homebrew.nix) { inputs = inputs; })
-                (import ./shared/homebrew.nix)
-              ];
-            };
-          };
-          homeManagerModules = {
-            default = { ... }: {
-              imports = [ ((import ./shared/home.nix) { pkgs = pkgs; pkgs-unstable = pkgs-unstable; }) ];
-            };
-          };
-
           packages.templater = pkgs.writeShellApplication {
             name = "templater";
             runtimeInputs = [ pkgs.gnused ];
@@ -80,6 +116,8 @@
         }
       )
     // {
+      inherit overlays darwinModules homeManagerModules;
+
       templates.default = {
         path = ./template;
         description = "DonQ's workstation configuration template";
