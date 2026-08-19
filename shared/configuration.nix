@@ -3,15 +3,16 @@
   # Auto upgrade nix package and the daemon service.
   # nix.package = pkgs.nix;
 
+  # Nix itself is managed by the Determinate installer, not nix-darwin. With
+  # nix.enable = false, nix-darwin drops ALL nix.* settings (nix.settings,
+  # nix.extraOptions, ...) via `mkIf cfg.enable` in its modules/nix/default.nix,
+  # so setting them here is a silent no-op — configure /etc/nix/nix.custom.conf
+  # instead.
   nix.enable = false;
 
   system.primaryUser = username;
 
   services.openssh.enable = true;
-
-  nix.settings.experimental-features = "nix-command flakes";
-
-  nix.settings.trusted-users = [ "root" username ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -76,10 +77,6 @@
   environment.variables = {
     EDITOR = "vim";
   };
-
-  nix.extraOptions = ''
-    extra-nix-path = nixpkgs=flake:nixpkgs
-  '';
 
   environment.systemPackages = [
   ];
