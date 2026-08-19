@@ -1,7 +1,7 @@
 # DonQ development toolchain. Expects an `unstable` overlay on pkgs
 # (donq's overlays.unstable-packages, applied by darwinModules.core, or a
 # compatible one).
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: {
   home.sessionPath = [
     "$HOME/.local/bin"
     "$HOME/go/bin"
@@ -12,7 +12,10 @@
     NIX_PATH = "nixpkgs=flake:nixpkgs";
   };
 
-  home.packages = [
+  # lowPrio is the mkDefault of packages: when a consumer's own config ships
+  # the same binary (e.g. their own neovim or uv at a different version),
+  # theirs wins the buildEnv collision instead of failing the build.
+  home.packages = map lib.lowPrio [
     pkgs.nixpkgs-fmt
     pkgs.age
     pkgs.just
