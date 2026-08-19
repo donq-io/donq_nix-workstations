@@ -2,10 +2,12 @@
 { ... }: {
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
 
-    matchBlocks = {
+    # Freeform: keys are verbatim ssh_config directives.
+    settings = {
       "*" = {
-        setEnv = {
+        SetEnv = {
           TERM = "xterm-256color"; # ghostty requires as it is not always recognized by remote server
         };
       };

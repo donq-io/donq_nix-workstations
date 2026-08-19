@@ -2,13 +2,13 @@
   description = "DonQ's shared Nix modules";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -37,12 +37,20 @@
     }:
     let
       overlays = {
-        # Exposes this flake's nixpkgs-unstable as `pkgs.unstable`.
-        unstable-packages = final: _prev: {
-          unstable = import nixpkgs-unstable {
-            system = final.stdenv.hostPlatform.system;
-            config.allowUnfree = true;
-          };
+        # Exposes this flake's nixpkgs-unstable as `pkgs.unstable`. On
+        # x86_64-darwin — dropped by nixpkgs-unstable, with 26.05 the last
+        # stable release (security fixes until end of 2026) — `unstable` falls
+        # back to the stable set so Intel machines keep evaluating until EOL.
+        unstable-packages = _final: prev: {
+          unstable =
+            # `prev`, not `final`: later overlays alias into `unstable`
+            # (e.g. ruby_4_0 below), and a `final` fallback would self-loop.
+            if prev.stdenv.hostPlatform.isDarwin && prev.stdenv.hostPlatform.isx86_64
+            then prev
+            else import nixpkgs-unstable {
+              system = prev.stdenv.hostPlatform.system;
+              config.allowUnfree = true;
+            };
         };
       };
 

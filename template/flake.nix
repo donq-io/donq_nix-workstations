@@ -11,8 +11,8 @@
       username = "USERNAME";
       platform = "PLATFORM";
       # Frozen at generation time; do not bump on existing machines.
-      homeStateVersion = "25.05";
-      systemStateVersion = 1;
+      homeStateVersion = "26.05";
+      systemStateVersion = 7;
       modules = [
         # ./custom-darwin-module.nix
       ];
