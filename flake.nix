@@ -46,9 +46,8 @@
           darwinModules = {
             default = { ... }: {
               nixpkgs.overlays = [
-                (_final: _prev: { ruby_4_0 = (import nixpkgs-unstable { inherit system; }).ruby_4_0; })
+                (_final: _prev: { ruby_4_0 = pkgs-unstable.ruby_4_0; })
               ];
-              environment.systemPackages = [ pkgs.cowsay ];
               imports = [
                 ((import ./shared/configuration.nix) { pkgs = pkgs; pkgs-unstable = pkgs-unstable; })
                 nix-homebrew.darwinModules.nix-homebrew
