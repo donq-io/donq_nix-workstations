@@ -90,6 +90,51 @@
         aarch64-darwin.default = default;
         x86_64-darwin.default = default;
       };
+
+      # All the wiring a fleet machine needs, kept central so improvements ship
+      # via `nix flake update donq` instead of being frozen into generated
+      # flakes. The machine flake only provides data (see template/flake.nix).
+      # State versions are required on purpose: they must be frozen per machine
+      # at generation time, never drift with a donq update.
+      mkWorkstation =
+        { username
+        , platform
+        , homeStateVersion
+        , systemStateVersion
+        , inputs ? { }   # the machine flake's inputs (for configurationRevision etc.)
+        , modules ? [ ]  # extra darwin modules
+        , homeModules ? [ ]  # extra home-manager modules
+        , specialArgs ? { }
+        }:
+        let
+          allSpecialArgs = {
+            inherit inputs username platform homeStateVersion systemStateVersion;
+          } // specialArgs;
+        in
+        self.inputs.nix-darwin.lib.darwinSystem {
+          specialArgs = allSpecialArgs;
+          modules = [
+            {
+              system.stateVersion = systemStateVersion;
+              nixpkgs.hostPlatform = platform;
+              users.users.${username}.home = "/Users/${username}";
+            }
+            darwinModules.default
+            self.inputs.home-manager.darwinModules.home-manager
+            {
+              home-manager = {
+                extraSpecialArgs = allSpecialArgs;
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                backupFileExtension = "nix.old";
+                users.${username}.imports = [
+                  { home.stateVersion = homeStateVersion; }
+                  homeManagerModules.default
+                ] ++ homeModules;
+              };
+            }
+          ] ++ modules;
+        };
     in
     flake-utils.lib.eachSystem [ "aarch64-darwin" "x86_64-darwin" ]
       (
@@ -117,6 +162,8 @@
       )
     // {
       inherit overlays darwinModules homeManagerModules;
+
+      lib = { inherit mkWorkstation; };
 
       templates.default = {
         path = ./template;
