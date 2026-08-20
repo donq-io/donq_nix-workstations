@@ -1,7 +1,10 @@
-{ inputs, ... }: { username, ... }: {
+# nix-homebrew wiring: installs and pins the Homebrew frontend itself.
+# `inputs` here are donq's own flake inputs (the brew pins), closed over in
+# flake.nix — not the consumer's.
+{ inputs }: { config, ... }: {
   nix-homebrew = {
     enable = true;
-    user = username;
+    user = config.system.primaryUser;
     mutableTaps = false;
     autoMigrate = true;
     #enableRosetta = true;
