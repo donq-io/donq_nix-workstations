@@ -144,6 +144,29 @@
         "type": "github"
       }
     },
+    "productive-cli": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784382842,
+        "narHash": "sha256-WE2g/QLMP53pESCrwX5W9hduSY7TQZ0hL5ZCcqpGYt8=",
+        "owner": "donq-io",
+        "repo": "donq_productive-cli",
+        "rev": "c433d24bf56425d8b898a5d982ce871dcb95c3e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "donq-io",
+        "repo": "donq_productive-cli",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "brew-src": "brew-src",
@@ -153,7 +176,9 @@
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "productive-cli": "productive-cli",
+        "zammad-cli": "zammad-cli"
       }
     },
     "systems": {
@@ -168,6 +193,29 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "zammad-cli": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785858759,
+        "narHash": "sha256-l14k8QwF6GShD4lLT1Auc49JMdFBuHxww10BKdet2eo=",
+        "owner": "donq-io",
+        "repo": "donq_zammad-cli",
+        "rev": "34c9f03d4d09576b2ca2dbf67ae9a64aeceb17d2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "donq-io",
+        "repo": "donq_zammad-cli",
         "type": "github"
       }
     }

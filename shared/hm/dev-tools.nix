@@ -1,6 +1,6 @@
 # DonQ development toolchain. Expects an `unstable` overlay on pkgs
 # (donq's overlays.unstable-packages, applied by darwinModules.core, or a
-# compatible one).
+# compatible one) and `pkgs.donq.*` (donq's overlays.donq-cli-tools, ditto).
 { lib, pkgs, ... }: {
   home.sessionPath = [
     "$HOME/.local/bin"
@@ -43,6 +43,10 @@
     pkgs.unstable.devenv
     pkgs.unstable.ngrok
     pkgs.unstable.vscode
+
+    # In-house CLIs (from the donq-cli-tools overlay).
+    pkgs.donq.pd
+    pkgs.donq.zm
   ];
 
   programs.direnv = {

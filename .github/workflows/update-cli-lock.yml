@@ -1,0 +1,35 @@
+name: Update CLI lock
+
+on:
+  schedule:
+    # An hour after the Homebrew lock update, so the two pushes never race.
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Update CLI inputs
+        run: nix flake update productive-cli zammad-cli
+        env:
+          # nixbot-DQ's PAT (read-only reach: the nix repos), set manually
+          # via `gh secret set NIXBOT_DQ_PAT`; the default GITHUB_TOKEN
+          # cannot read other private repos.
+          NIX_CONFIG: access-tokens = github.com=${{ secrets.NIXBOT_DQ_PAT }}
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --exit-code flake.lock > /dev/null 2>&1; then
+            echo "No changes to flake.lock"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add flake.lock
+          git commit -m "chore: update CLI lock inputs"
+          git push

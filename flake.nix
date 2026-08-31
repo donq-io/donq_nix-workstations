@@ -25,6 +25,22 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
+
+    # In-house CLIs, shipped fleet-wide via homeManagerModules.dev-tools.
+    # Private repos, fetched through the GitHub API: fleet machines carry
+    # nixbot-DQ's read-only token in /etc/nix/nix.custom.conf
+    # (`access-tokens = github.com=…`, shipped by MDM); other consumers use
+    # any token that can read them, e.g. `gh auth token`.
+    productive-cli = {
+      url = "github:donq-io/donq_productive-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+    zammad-cli = {
+      url = "github:donq-io/donq_zammad-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs =
@@ -52,6 +68,15 @@
               config.allowUnfree = true;
             };
         };
+
+        # In-house CLIs from the private inputs, namespaced as pkgs.donq.* so
+        # modules (plain files taking `pkgs`) can reach them system-agnostically.
+        donq-cli-tools = _final: prev: {
+          donq = (prev.donq or { }) // {
+            pd = inputs.productive-cli.packages.${prev.stdenv.hostPlatform.system}.default;
+            zm = inputs.zammad-cli.packages.${prev.stdenv.hostPlatform.system}.default;
+          };
+        };
       };
 
       # All modules are system-agnostic: they take `pkgs` from module args and
@@ -66,6 +91,7 @@
           imports = [ ./shared/darwin/core.nix ];
           nixpkgs.overlays = [
             overlays.unstable-packages
+            overlays.donq-cli-tools
             (final: _prev: { ruby_4_0 = final.unstable.ruby_4_0; })
           ];
         };
