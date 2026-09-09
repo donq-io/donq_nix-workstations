@@ -18,6 +18,8 @@
   home.packages = map lib.lowPrio [
     pkgs.nixpkgs-fmt
     pkgs.age
+    pkgs.bitwarden-cli
+    pkgs.dotenvx
     pkgs.just
     pkgs.go-task
     pkgs.terraform
