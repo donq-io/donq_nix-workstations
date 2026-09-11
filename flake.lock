@@ -154,11 +154,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789123278,
-        "narHash": "sha256-Qoik06wqNpZV5hHH41dyQzuXrViygRKriICxUDD+sUk=",
+        "lastModified": 1789124671,
+        "narHash": "sha256-xbtEdpPGNoyO+zthxSuKkmWdkooofBsv6cSEmM+a7rQ=",
         "owner": "donq-io",
         "repo": "donq_productive-cli",
-        "rev": "f492e62302a0b0d85515267beab33703b1821fe0",
+        "rev": "43c6f54edcc33d6c5a5d8150989d5f2eee38719c",
         "type": "github"
       },
       "original": {
