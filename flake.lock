@@ -16,6 +16,29 @@
         "type": "github"
       }
     },
+    "bw-broker": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790098692,
+        "narHash": "sha256-/HFOHFSGWaDnpE71BKcwlOcBPLHlJVAD16okv5J5k8g=",
+        "owner": "donq-io",
+        "repo": "donq_bw-broker",
+        "rev": "55478b72d523186ebc6231006d7444940a091f27",
+        "type": "github"
+      },
+      "original": {
+        "owner": "donq-io",
+        "repo": "donq_bw-broker",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -170,6 +193,7 @@
     "root": {
       "inputs": {
         "brew-src": "brew-src",
+        "bw-broker": "bw-broker",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "homebrew-bundle": "homebrew-bundle",
