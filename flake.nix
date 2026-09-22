@@ -41,6 +41,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    # Approval-gated Bitwarden credentials for coding agents: ships both the
+    # package (pkgs.donq.bw-broker) and the launchd service module.
+    bw-broker = {
+      url = "github:donq-io/donq_bw-broker";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs =
@@ -75,6 +82,7 @@
           donq = (prev.donq or { }) // {
             pd = inputs.productive-cli.packages.${prev.stdenv.hostPlatform.system}.default;
             zm = inputs.zammad-cli.packages.${prev.stdenv.hostPlatform.system}.default;
+            bw-broker = inputs.bw-broker.packages.${prev.stdenv.hostPlatform.system}.default;
           };
         };
       };
@@ -105,7 +113,11 @@
             ./shared/darwin/homebrew.nix
           ];
         };
-        default = { ... }: { imports = [ core macos-defaults homebrew ]; };
+        # bw-broker's options, inert until a machine sets
+        # `services.bw-broker.enable = true` (then: launchd daemon, its own
+        # system user, and bw-agent/bw-brokerctl on the system PATH).
+        bw-broker = import ./shared/darwin/bw-broker.nix { inherit inputs; };
+        default = { ... }: { imports = [ core macos-defaults homebrew bw-broker ]; };
         # Legacy aliases: generated machine flakes reference
         # darwinModules."<platform>".default.
         aarch64-darwin.default = default;

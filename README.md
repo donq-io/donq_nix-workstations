@@ -72,6 +72,25 @@ of `donq.flakePath`.
 
 If a machine already defines the same hook in a custom Home Manager module,
 remove that local hook when adopting the shared one to avoid sourcing twice.
+## Bitwarden credentials for coding agents
+
+`darwinModules.default` carries [bw-broker](https://github.com/donq-io/donq_bw-broker)'s
+options, inert until a machine opts in:
+
+```nix
+services.bw-broker.enable = true;
+```
+
+A coding agent then reaches one field of one vault item at a time with
+`bw-agent run --item … --field … --env VAR --reason … -- <command>`, and the
+owner approves each use on Telegram, seeing the command before it runs.
+`darwin-rebuild switch` creates the `_bwbroker` system user, the `bw-agents`
+group (this machine's user is added by default), the state and socket
+directories, and the launchd daemon; it also puts `bw-agent`, `bw-brokerctl`
+and `bw` on the system PATH. The Telegram token and user id go into
+`/etc/bw-broker/env`, which the activation creates empty and readable only by
+the daemon user — no secret ever reaches the Nix store. Setup, daily use and the
+threat model are in the project's README.
 
 ## Keeping a machine in sync
 
