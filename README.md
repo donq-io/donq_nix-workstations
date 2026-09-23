@@ -46,6 +46,33 @@ donq.homeManagerModules.dev-tools
 Org modules are polite guests: option values are `mkDefault` and packages are
 `lowPrio`, so the machine's own configuration always wins conflicts.
 
+## Local environment variables
+
+The shared `shell` Home Manager module loads `~/.config/nix/.env.local`
+whenever Zsh starts, including non-interactive shells. The file is optional
+and is read at runtime; its contents are not embedded in the Nix store.
+Use shell statements with explicit exports:
+
+```sh
+export MY_API_TOKEN='your-value'
+export MY_SERVICE_URL='https://example.com'
+```
+
+Create the file locally and restrict its permissions with
+`chmod 600 ~/.config/nix/.env.local`. Both provisioning methods above add
+`/.env.local` to the generated configuration's `.gitignore`. For existing
+machine repositories, add that rule before creating the file. Keep this file
+untracked and do not reference its contents from Nix expressions.
+
+After updating `donq` and rebuilding once, changes to the file only require
+a new Zsh shell, or `source ~/.config/nix/.env.local` in an existing one.
+Variables are inherited by processes launched from that shell. Fish does not
+source this shell-format file directly. The file path is fixed independently
+of `donq.flakePath`.
+
+If a machine already defines the same hook in a custom Home Manager module,
+remove that local hook when adopting the shared one to avoid sourcing twice.
+
 ## Keeping a machine in sync
 
 When a system is operative, keep it in sync by periodically running the `snix`

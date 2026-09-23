@@ -179,11 +179,15 @@
         {
           packages.templater = pkgs.writeShellApplication {
             name = "templater";
-            runtimeInputs = [ pkgs.gnused ];
+            runtimeInputs = [ pkgs.gnused pkgs.gnugrep ];
             text = ''
               flake_directory=$(dirname "$3")
               mkdir -p "$flake_directory"
               sed -e "s/USERNAME/$1/g" -e "s/PLATFORM/$2/g" ${self}/template/flake.nix > "$3"
+              touch "$flake_directory/.gitignore"
+              if ! grep -qxF '/.env.local' "$flake_directory/.gitignore"; then
+                printf '\n/.env.local\n' >> "$flake_directory/.gitignore"
+              fi
             '';
           };
 

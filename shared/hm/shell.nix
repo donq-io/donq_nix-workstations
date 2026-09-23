@@ -20,6 +20,12 @@
     syntaxHighlighting.enable = true;
     history.ignoreDups = true;
     historySubstringSearch.enable = true;
+    # Source at runtime so local credentials never become Nix store contents.
+    envExtra = ''
+      if [ -r "$HOME/.config/nix/.env.local" ]; then
+        . "$HOME/.config/nix/.env.local"
+      fi
+    '';
     shellAliases = {
       t = "timew";
     };
